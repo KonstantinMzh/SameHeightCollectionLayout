@@ -11,7 +11,21 @@ import PinLayout
 
 class CustomCollectionView: UIView {
     
+    lazy var collectionView: UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
+        
+        collectionView.register(CustomCell.self, forCellWithReuseIdentifier: CustomCell.id)
+        collectionView.collectionViewLayout = layout
+        collectionView.backgroundColor = .white
+        
+        return collectionView
+    }()
+    
 
     init() {
         super.init(frame: .zero)
@@ -24,11 +38,11 @@ class CustomCollectionView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        collectionView.pin.all(0)
     }
     
     func setView() {
-        
+        self.addSubview(collectionView)
     }
     
 
