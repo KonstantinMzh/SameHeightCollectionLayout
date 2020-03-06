@@ -13,7 +13,9 @@ class CustomCollectionView: UIView {
     
     lazy var collectionView: UICollectionView = {
 
-        let layout = CustomCollectionLayout()
+//        let layout = CustomCollectionLayout()
+        let layout = ThirdPieceRowCollectionLayout()
+
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
