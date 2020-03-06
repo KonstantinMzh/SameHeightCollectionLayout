@@ -32,8 +32,10 @@ class NewCollectionLayout: UICollectionViewLayout {
                 
         let cellWidth: CGFloat = (collectionView.frame.width / CGFloat(self.columnCount)) - padding - (spacingX/CGFloat(self.columnCount))
         
-        for index in stride(from: 0, to: itemsCount, by: columnCount) {
-            
+
+        
+                                                                      
+        func prepareTwoPieceRow(index: Int) {
             var resultHeight: CGFloat = 0.0
             
             let indexPath1 = IndexPath(row: index, section: 0)
@@ -88,8 +90,40 @@ class NewCollectionLayout: UICollectionViewLayout {
             cacheAttributes[indexPath2] = attribute2
             
             self.contentHeight = lastY
-
         }
+        
+        func prepareOnePieceRow(index: Int) {
+            let indexPath = IndexPath(row: index, section: 0)
+            let attribute = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            
+            let height = delegate?.collectionView(collectionView, indexPath: indexPath) ?? 200
+            
+            attribute.frame = CGRect(x: padding, y: lastY, width: cellWidth, height: height)
+            
+            lastY += height + spacingY
+            
+            cacheAttributes[indexPath] = attribute
+            
+            self.contentHeight = lastY
+        }
+        
+        for index in stride(from: 0, to: itemsCount, by: columnCount) {
+            
+            if index+1 == itemsCount {
+                prepareOnePieceRow(index: index)
+                break
+            }
+            
+            prepareTwoPieceRow(index: index)
+            print("\(index+1)/\(itemsCount)")
+        }
+        
+        if itemsCount%columnCount != 0 {
+            
+        }
+        
+        
+
 
         
     }
