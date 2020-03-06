@@ -39,7 +39,7 @@ class CollectionVC: UIViewController {
 
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
-        if let layout = mainView.collectionView.collectionViewLayout as? NewCollectionLayout {
+        if let layout = mainView.collectionView.collectionViewLayout as? CustomCollectionLayout {
             layout.delegate = self
         }
         

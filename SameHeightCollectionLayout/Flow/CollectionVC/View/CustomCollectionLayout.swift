@@ -9,7 +9,7 @@
 import UIKit
 
 
-class NewCollectionLayout: UICollectionViewLayout {
+class CustomCollectionLayout: UICollectionViewLayout {
     
     var cacheAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     var columnCount: Int = 2
