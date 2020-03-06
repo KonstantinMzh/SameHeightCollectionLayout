@@ -11,7 +11,7 @@ import UIKit
 class ThirdPieceRowCollectionLayout: UICollectionViewLayout {
     
     var cacheAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
-    var columnCount: Int = 10
+    var columnCount: Int = 3
     var contentHeight: CGFloat = 0.0
     
     let padding: CGFloat = 5.0
@@ -35,7 +35,7 @@ class ThirdPieceRowCollectionLayout: UICollectionViewLayout {
         let totalCellWidth: CGFloat = collectionView.frame.width - totalPaddingSpace - totalSpacingBetwenCells
         let cellWidth: CGFloat = totalCellWidth / CGFloat(columnCount)
         
-        func prepareThirdPieceRow(index: Int) {
+        func prepareThirdPieceRow(index: Int, columnInRow: Int) {
             
             var resultHeight: CGFloat = 0.0
 
@@ -43,7 +43,7 @@ class ThirdPieceRowCollectionLayout: UICollectionViewLayout {
             var elementsHeight: [CGFloat] = []
             var attributes: [UICollectionViewLayoutAttributes] = []
             
-            for index in index..<index+columnCount {
+            for index in index..<index+columnInRow {
                 
                 
                 let indexPath = IndexPath(row: index, section: 0)
@@ -56,7 +56,7 @@ class ThirdPieceRowCollectionLayout: UICollectionViewLayout {
                 
             }
                         
-            for columnIndex in 0 ... columnCount-1 {
+            for columnIndex in 0 ... columnInRow-1 {
                 
                 
                 var columnOriginX: CGFloat {
@@ -82,13 +82,25 @@ class ThirdPieceRowCollectionLayout: UICollectionViewLayout {
             
         }
         
-        for index in stride(from: 0, through: itemsCount, by: columnCount) {
+        let remainingColumns: Int = itemsCount - ((itemsCount/columnCount) * columnCount)
+        
+        
+        for index in stride(from: 0, through: itemsCount - remainingColumns, by: columnCount) {
             
-            if index == itemsCount {
+//            print(index)
+            
+            if index == itemsCount - remainingColumns {
                 break
             }
             
-            prepareThirdPieceRow(index: index)
+            prepareThirdPieceRow(index: index, columnInRow: columnCount)
+        }
+        
+        print(itemsCount - remainingColumns - 1)
+        
+
+        if remainingColumns > 0 {
+            prepareThirdPieceRow(index: itemsCount - remainingColumns, columnInRow: remainingColumns)
         }
         
     }
