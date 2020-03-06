@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol CustomLayoutDelegate: AnyObject {
+    
+    func collectionView(_ collectionView: UICollectionView, indexPath: IndexPath) -> CGFloat
+    
+}
 
 class CustomCollectionLayout: UICollectionViewLayout {
     
