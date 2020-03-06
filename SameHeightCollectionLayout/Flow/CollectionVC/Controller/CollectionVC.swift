@@ -12,6 +12,11 @@ class CollectionVC: UIViewController {
 
     let mainView = CustomCollectionView()
     
+//    let heightValues: [CGFloat] = [100, 120, 80, 75, 110, 180, 300, 105, 220, 115, 80, 120, 100, 250, 225, 230, 150, 160, 165, 180, 190, 100, 80, 70]
+    
+    let heightValues: [CGFloat] = [150, 100, 300, 80, 20, 40, 20, 15, 400, 100]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,7 +24,7 @@ class CollectionVC: UIViewController {
         self.view.backgroundColor = .white
         mainView.translatesAutoresizingMaskIntoConstraints = false
         mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
+
         if #available(iOS 11.0, *) {
             mainView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
             mainView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -31,9 +36,12 @@ class CollectionVC: UIViewController {
             mainView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
             mainView.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor).isActive = true
         }
-        
+
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
+        if let layout = mainView.collectionView.collectionViewLayout as? NewCollectionLayout {
+            layout.delegate = self
+        }
         
     }
 
@@ -48,23 +56,20 @@ extension CollectionVC: UICollectionViewDelegate {
 extension CollectionVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return heightValues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCell.id, for: indexPath) as! CustomCell
-        cell.setCell()
+        cell.setCell(index: indexPath)
         return cell
     }
 }
 
-
-extension CollectionVC: UICollectionViewDelegateFlowLayout {
+extension CollectionVC: CustomLayoutDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width/2-7.5
-        let height = width * 1.53
-        return CGSize(width: width, height: height)
+    func collectionView(_ collectionView: UICollectionView, indexPath: IndexPath) -> CGFloat {
+        return heightValues[indexPath.row]
     }
     
 }

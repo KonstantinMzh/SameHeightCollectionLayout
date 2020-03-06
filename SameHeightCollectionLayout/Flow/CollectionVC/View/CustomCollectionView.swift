@@ -13,8 +13,10 @@ class CustomCollectionView: UIView {
     
     lazy var collectionView: UICollectionView = {
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+
+        let layout = NewCollectionLayout()
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
