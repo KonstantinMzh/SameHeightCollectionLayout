@@ -14,7 +14,7 @@ class CollectionVC: UIViewController {
     
 //    let heightValues: [CGFloat] = [100, 120, 80, 75, 110, 180, 300, 105, 220, 115, 80, 120, 100, 250, 225, 230, 150, 160, 165, 180, 190, 100, 80, 70]
     
-    let heightValues: [CGFloat] = [150, 100, 300, 80, 120, 140, 100, 150, 400, 100, 150]
+    let heightValues: [CGFloat] = [400, 100, 300, 80, 150, 140, 800, 150, 400, 100]
     
     
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class CollectionVC: UIViewController {
 
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
-        if let layout = mainView.collectionView.collectionViewLayout as? CustomCollectionLayout {
+        if let layout = mainView.collectionView.collectionViewLayout as? ThirdPieceRowCollectionLayout {
             layout.delegate = self
         }
         

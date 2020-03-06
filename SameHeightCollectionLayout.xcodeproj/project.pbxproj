@@ -138,8 +138,8 @@
 		B5AC396D240FB6A900C18A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B5702920241199E900FC2B9A /* CustomCollectionLayout.swift */,
 				B570292624128CCE00FC2B9A /* ThirdPieceRowCollectionLayout.swift */,
+				B5702920241199E900FC2B9A /* CustomCollectionLayout.swift */,
 				B570291C240FCEDC00FC2B9A /* CustomCell.swift */,
 				B5AC3971240FBA4300C18A22 /* CustomCollectionView.swift */,
 			);

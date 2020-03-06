@@ -11,7 +11,7 @@ import UIKit
 class ThirdPieceRowCollectionLayout: UICollectionViewLayout {
     
     var cacheAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
-    var columnCount: Int = 3
+    var columnCount: Int = 10
     var contentHeight: CGFloat = 0.0
     
     let padding: CGFloat = 5.0
@@ -35,7 +35,77 @@ class ThirdPieceRowCollectionLayout: UICollectionViewLayout {
         let totalCellWidth: CGFloat = collectionView.frame.width - totalPaddingSpace - totalSpacingBetwenCells
         let cellWidth: CGFloat = totalCellWidth / CGFloat(columnCount)
         
+        func prepareThirdPieceRow(index: Int) {
+            
+            var resultHeight: CGFloat = 0.0
+
+            var indexPaths: [IndexPath] = []
+            var elementsHeight: [CGFloat] = []
+            var attributes: [UICollectionViewLayoutAttributes] = []
+            
+            for index in index..<index+columnCount {
+                
+                
+                let indexPath = IndexPath(row: index, section: 0)
+                
+                indexPaths.append(indexPath)
+                elementsHeight.append(delegate?.collectionView(collectionView, indexPath: indexPath) ?? 200)
+                attributes.append(UICollectionViewLayoutAttributes(forCellWith: indexPath))
+                
+                resultHeight = elementsHeight.max() ?? 200
+                
+            }
+                        
+            for columnIndex in 0 ... columnCount-1 {
+                
+                
+                var columnOriginX: CGFloat {
+                    if columnIndex == 0 {
+                        return padding
+                    } else {
+                        return (padding + (CGFloat(columnIndex) * cellWidth) + (CGFloat(columnIndex) * spacingX))
+                    }
+                }
+                
+                lastX = columnOriginX
+                
+                attributes[columnIndex].frame = CGRect(x: lastX, y: lastY, width: cellWidth, height: resultHeight)
+                
+            }
+            
+            for index in 0...attributes.count - 1 {
+                cacheAttributes[attributes[index].indexPath] = attributes[index]
+            }
+            
+            lastY += resultHeight + spacingY
+            self.contentHeight = lastY
+            
+        }
         
+        for index in stride(from: 0, through: itemsCount, by: columnCount) {
+            
+            if index == itemsCount {
+                break
+            }
+            
+            prepareThirdPieceRow(index: index)
+        }
+        
+    }
+    
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        return cacheAttributes.values.filter { attributes in
+            return rect.intersects(attributes.frame)
+        }
+    }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return cacheAttributes[indexPath]
+    }
+    
+    override var collectionViewContentSize: CGSize {
+        return CGSize(width: self.collectionView?.frame.width ?? 0, height: self.contentHeight)
     }
     
 }
