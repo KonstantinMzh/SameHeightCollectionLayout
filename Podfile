@@ -7,5 +7,6 @@ target 'SameHeightCollectionLayout' do
 
   # Pods for SameHeightCollectionLayout
   pod 'PinLayout'
+  
 
 end
