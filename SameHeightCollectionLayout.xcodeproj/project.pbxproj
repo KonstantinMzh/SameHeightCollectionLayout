@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49CB32F6D96CE16AEBEDE36D /* Pods_SameHeightCollectionLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E764D22885F5D76AC6448F /* Pods_SameHeightCollectionLayout.framework */; };
+		B51B4AEB2413BF8900F44131 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B51B4AEA2413BF8900F44131 /* .gitignore */; };
 		B570291D240FCEDC00FC2B9A /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570291C240FCEDC00FC2B9A /* CustomCell.swift */; };
 		B570292724128CCE00FC2B9A /* CustomCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570292624128CCE00FC2B9A /* CustomCollectionLayout.swift */; };
 		B5AC3955240F47DD00C18A22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC3954240F47DD00C18A22 /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		75E764D22885F5D76AC6448F /* Pods_SameHeightCollectionLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SameHeightCollectionLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B51B4AEA2413BF8900F44131 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B570291C240FCEDC00FC2B9A /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		B570292624128CCE00FC2B9A /* CustomCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionLayout.swift; sourceTree = "<group>"; };
 		B5AC3951240F47DD00C18A22 /* SameHeightCollectionLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SameHeightCollectionLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,7 @@
 			children = (
 				B5AC3954240F47DD00C18A22 /* AppDelegate.swift */,
 				B5AC395F240F47E000C18A22 /* LaunchScreen.storyboard */,
+				B51B4AEA2413BF8900F44131 /* .gitignore */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5AC3961240F47E000C18A22 /* LaunchScreen.storyboard in Resources */,
+				B51B4AEB2413BF8900F44131 /* .gitignore in Resources */,
 				B5AC395E240F47E000C18A22 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
