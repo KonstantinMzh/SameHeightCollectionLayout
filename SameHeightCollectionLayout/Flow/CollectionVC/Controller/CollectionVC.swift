@@ -45,12 +45,8 @@ class CollectionVC: UIViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         DispatchQueue.main.async {
-            self.mainView.collectionView.collectionViewLayout.invalidateLayout()
-            self.mainView.layoutSubviews()
-            self.mainView.layoutIfNeeded()
-        }
+            self.mainView.collectionView.collectionViewLayout.invalidateLayout()        }
     }
-    
 }
 
 
