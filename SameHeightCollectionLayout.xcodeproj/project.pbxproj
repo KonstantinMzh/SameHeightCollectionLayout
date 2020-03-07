@@ -9,27 +9,25 @@
 /* Begin PBXBuildFile section */
 		49CB32F6D96CE16AEBEDE36D /* Pods_SameHeightCollectionLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E764D22885F5D76AC6448F /* Pods_SameHeightCollectionLayout.framework */; };
 		B570291D240FCEDC00FC2B9A /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570291C240FCEDC00FC2B9A /* CustomCell.swift */; };
-		B5702921241199E900FC2B9A /* CustomCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5702920241199E900FC2B9A /* CustomCollectionLayout.swift */; };
-		B570292724128CCE00FC2B9A /* ThirdPieceRowCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570292624128CCE00FC2B9A /* ThirdPieceRowCollectionLayout.swift */; };
+		B570292724128CCE00FC2B9A /* CustomCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570292624128CCE00FC2B9A /* CustomCollectionLayout.swift */; };
 		B5AC3955240F47DD00C18A22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC3954240F47DD00C18A22 /* AppDelegate.swift */; };
 		B5AC395E240F47E000C18A22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC395D240F47E000C18A22 /* Assets.xcassets */; };
 		B5AC3961240F47E000C18A22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5AC395F240F47E000C18A22 /* LaunchScreen.storyboard */; };
 		B5AC3970240FB7E400C18A22 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC396F240FB7E400C18A22 /* CollectionVC.swift */; };
-		B5AC3972240FBA4300C18A22 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC3971240FBA4300C18A22 /* CustomCollectionView.swift */; };
+		B5C26FBF2412FC42000A7910 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C26FBE2412FC42000A7910 /* CustomCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		75E764D22885F5D76AC6448F /* Pods_SameHeightCollectionLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SameHeightCollectionLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B570291C240FCEDC00FC2B9A /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		B5702920241199E900FC2B9A /* CustomCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionLayout.swift; sourceTree = "<group>"; };
-		B570292624128CCE00FC2B9A /* ThirdPieceRowCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPieceRowCollectionLayout.swift; sourceTree = "<group>"; };
+		B570292624128CCE00FC2B9A /* CustomCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionLayout.swift; sourceTree = "<group>"; };
 		B5AC3951240F47DD00C18A22 /* SameHeightCollectionLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SameHeightCollectionLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AC3954240F47DD00C18A22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5AC395D240F47E000C18A22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5AC3960240F47E000C18A22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5AC3962240F47E000C18A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5AC396F240FB7E400C18A22 /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
-		B5AC3971240FBA4300C18A22 /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
+		B5C26FBE2412FC42000A7910 /* CustomCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCollectionView.swift; path = ../../../../../../../../.Trash/CustomCollectionView.swift; sourceTree = "<group>"; };
 		E3109E5D348ED056A3791F17 /* Pods-SameHeightCollectionLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SameHeightCollectionLayout.debug.xcconfig"; path = "Target Support Files/Pods-SameHeightCollectionLayout/Pods-SameHeightCollectionLayout.debug.xcconfig"; sourceTree = "<group>"; };
 		FE0890047FEEBC8E1E6AC943 /* Pods-SameHeightCollectionLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SameHeightCollectionLayout.release.xcconfig"; path = "Target Support Files/Pods-SameHeightCollectionLayout/Pods-SameHeightCollectionLayout.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,10 +136,9 @@
 		B5AC396D240FB6A900C18A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B570292624128CCE00FC2B9A /* ThirdPieceRowCollectionLayout.swift */,
-				B5702920241199E900FC2B9A /* CustomCollectionLayout.swift */,
+				B570292624128CCE00FC2B9A /* CustomCollectionLayout.swift */,
 				B570291C240FCEDC00FC2B9A /* CustomCell.swift */,
-				B5AC3971240FBA4300C18A22 /* CustomCollectionView.swift */,
+				B5C26FBE2412FC42000A7910 /* CustomCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -267,10 +264,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5702921241199E900FC2B9A /* CustomCollectionLayout.swift in Sources */,
-				B5AC3972240FBA4300C18A22 /* CustomCollectionView.swift in Sources */,
 				B5AC3970240FB7E400C18A22 /* CollectionVC.swift in Sources */,
-				B570292724128CCE00FC2B9A /* ThirdPieceRowCollectionLayout.swift in Sources */,
+				B570292724128CCE00FC2B9A /* CustomCollectionLayout.swift in Sources */,
+				B5C26FBF2412FC42000A7910 /* CustomCollectionView.swift in Sources */,
 				B570291D240FCEDC00FC2B9A /* CustomCell.swift in Sources */,
 				B5AC3955240F47DD00C18A22 /* AppDelegate.swift in Sources */,
 			);

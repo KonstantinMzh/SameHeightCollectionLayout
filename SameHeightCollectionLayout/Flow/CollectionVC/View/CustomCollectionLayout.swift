@@ -1,8 +1,8 @@
 //
-//  NewCollectionLayout.swift
+//  ThirdPieceRowCollectionLayout.swift
 //  SameHeightCollectionLayout
 //
-//  Created by Константин Маламуж on 05.03.2020.
+//  Created by Константин Маламуж on 06.03.2020.
 //  Copyright © 2020 Константин Маламуж. All rights reserved.
 //
 
@@ -16,13 +16,15 @@ protocol CustomLayoutDelegate: AnyObject {
 
 class CustomCollectionLayout: UICollectionViewLayout {
     
-    var cacheAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     var columnCount: Int = 2
-    var contentHeight: CGFloat = 0.0
+    var padding: CGFloat = 5.0
+    var spacingX: CGFloat = 5.0
+    var spacingY: CGFloat = 5.0
     
-    let padding: CGFloat = 5.0
-    let spacingX: CGFloat = 5.0
-    let spacingY: CGFloat = 5.0
+    private var cacheAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
+    private var contentHeight: CGFloat = 0.0
+    
+
     
     weak var delegate: CustomLayoutDelegate?
     
@@ -34,102 +36,76 @@ class CustomCollectionLayout: UICollectionViewLayout {
         
         var lastY: CGFloat = spacingY
         var lastX: CGFloat = 0.0
-                
-        let cellWidth: CGFloat = (collectionView.frame.width / CGFloat(self.columnCount)) - padding - (spacingX/CGFloat(self.columnCount))
         
-
+        let totalPaddingSpace = padding * 2
+        let spacingBetweenCellsCount = columnCount - 1
+        let totalSpacingBetwenCells: CGFloat = CGFloat(spacingBetweenCellsCount) * spacingX
+        let totalCellWidth: CGFloat = collectionView.frame.width - totalPaddingSpace - totalSpacingBetwenCells
+        let cellWidth: CGFloat = totalCellWidth / CGFloat(columnCount)
         
-                                                                      
-        func prepareTwoPieceRow(index: Int) {
+        func prepareThirdPieceRow(index: Int, columnInRow: Int) {
+            
             var resultHeight: CGFloat = 0.0
-            
-            let indexPath1 = IndexPath(row: index, section: 0)
-            let indexPath2 = IndexPath(row: index+1, section: 0)
 
-            let attribute1 = UICollectionViewLayoutAttributes(forCellWith: indexPath1)
-            let attribute2 = UICollectionViewLayoutAttributes(forCellWith: indexPath2)
+            var indexPaths: [IndexPath] = []
+            var elementsHeight: [CGFloat] = []
+            var attributes: [UICollectionViewLayoutAttributes] = []
             
-            let height1 = delegate?.collectionView(collectionView, indexPath: indexPath1) ?? 200
-            let height2 = delegate?.collectionView(collectionView, indexPath: indexPath2) ?? 200
-
-            if height1 > height2 {
-                resultHeight = height1
-            } else {
-                resultHeight = height2
+            for index in index..<index+columnInRow {
+                
+                
+                let indexPath = IndexPath(row: index, section: 0)
+                
+                indexPaths.append(indexPath)
+                elementsHeight.append(delegate?.collectionView(collectionView, indexPath: indexPath) ?? 200)
+                attributes.append(UICollectionViewLayoutAttributes(forCellWith: indexPath))
+                
+                resultHeight = elementsHeight.max() ?? 200
+                
             }
-            
-            var currentColumn: Int = 1
-
-            
-            for _ in 1 ... columnCount {
-                switch currentColumn {
-                case 1:
-                    currentColumn += 1
-                    lastX = padding
-                    
-                    print("1 COL \(indexPath1.row) - x: \(lastX), y: \(lastY), w: \(cellWidth), h: \(resultHeight)")
-
-                    attribute1.frame = CGRect(x: lastX, y: lastY, width: cellWidth, height: resultHeight)
-
-                case 2:
-
-                    currentColumn = 1
-                    lastX = padding + cellWidth + spacingX
-                    
-                    print("2 COL \(indexPath2.row) - x: \(lastX), y: \(lastY), w: \(cellWidth), h: \(resultHeight)")
-
-                    
-                    attribute2.frame = CGRect(x: lastX, y: lastY, width: cellWidth, height: resultHeight)
-
-                    
-                default:
-                    return
+                        
+            for columnIndex in 0 ... columnInRow-1 {
+                
+                
+                var columnOriginX: CGFloat {
+                    if columnIndex == 0 {
+                        return padding
+                    } else {
+                        return (padding + (CGFloat(columnIndex) * cellWidth) + (CGFloat(columnIndex) * spacingX))
+                    }
                 }
+                
+                lastX = columnOriginX
+                
+                attributes[columnIndex].frame = CGRect(x: lastX, y: lastY, width: cellWidth, height: resultHeight)
+                
             }
             
+            for index in 0...attributes.count - 1 {
+                cacheAttributes[attributes[index].indexPath] = attributes[index]
+            }
             
-
             lastY += resultHeight + spacingY
-            
-            cacheAttributes[indexPath1] = attribute1
-            cacheAttributes[indexPath2] = attribute2
-            
             self.contentHeight = lastY
+            
         }
         
-        func prepareOnePieceRow(index: Int) {
-            let indexPath = IndexPath(row: index, section: 0)
-            let attribute = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            
-            let height = delegate?.collectionView(collectionView, indexPath: indexPath) ?? 200
-            
-            attribute.frame = CGRect(x: padding, y: lastY, width: cellWidth, height: height)
-            
-            lastY += height + spacingY
-            
-            cacheAttributes[indexPath] = attribute
-            
-            self.contentHeight = lastY
-        }
+        let remainingColumns: Int = itemsCount - ((itemsCount/columnCount) * columnCount)
         
-        for index in stride(from: 0, to: itemsCount, by: columnCount) {
-            
-            if index+1 == itemsCount {
-                prepareOnePieceRow(index: index)
+        
+        for index in stride(from: 0, through: itemsCount - remainingColumns, by: columnCount) {
+                        
+            if index == itemsCount - remainingColumns {
                 break
             }
             
-            prepareTwoPieceRow(index: index)
-            print("\(index+1)/\(itemsCount)")
+            prepareThirdPieceRow(index: index, columnInRow: columnCount)
         }
-        
-        if itemsCount%columnCount != 0 {
             
+
+        if remainingColumns > 0 {
+            prepareThirdPieceRow(index: itemsCount - remainingColumns, columnInRow: remainingColumns)
         }
-        
-        
-
-
         
     }
     
@@ -147,6 +123,5 @@ class CustomCollectionLayout: UICollectionViewLayout {
     override var collectionViewContentSize: CGSize {
         return CGSize(width: self.collectionView?.frame.width ?? 0, height: self.contentHeight)
     }
-    
     
 }

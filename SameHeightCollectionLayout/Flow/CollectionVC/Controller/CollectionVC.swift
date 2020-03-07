@@ -12,8 +12,6 @@ class CollectionVC: UIViewController {
 
     let mainView = CustomCollectionView()
     
-//    let heightValues: [CGFloat] = [100, 120, 80, 75, 110, 180, 300, 105, 220, 115, 80, 120, 100, 250, 225, 230, 150, 160, 165, 180, 190, 100, 80, 70]
-    
     let heightValues: [CGFloat] = [400, 100, 300, 80, 150, 140, 800, 150, 400, 100, 200, 300, 50]
     
     
@@ -39,7 +37,7 @@ class CollectionVC: UIViewController {
 
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
-        if let layout = mainView.collectionView.collectionViewLayout as? ThirdPieceRowCollectionLayout {
+        if let layout = mainView.collectionView.collectionViewLayout as? CustomCollectionLayout {
             layout.delegate = self
         }
         
